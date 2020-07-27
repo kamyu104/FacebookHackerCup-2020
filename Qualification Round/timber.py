@@ -19,7 +19,7 @@ def timber():
         for p, l in direction(P):
             lookup[d][p+d*l] = max(lookup[d][p+d*l], lookup[d][p]+l)
         for p, l in lookup[d].iteritems():
-            result = max(result, l+lookup[-d][p])
+            result = max(result, lookup[-d][p]+l)
     return result
 
 for case in xrange(input()):

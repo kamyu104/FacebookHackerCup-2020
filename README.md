@@ -12,4 +12,4 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 |B| [Alchemy](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/B)| [Python](./Qualification%20Round/alchemy.py)| _O(N)_ | _O(1)_ | Easy | | Math |
 |C| [Timber](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/C) | [Python](./Qualification%20Round/timber.py) | _O(NlogN)_ | _O(N)_ | Medium | | DP |
 |D1| [Running on Fumes - Chapter 1](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D1)| [Python](./Qualification%20Round/running_on_fumes_chapter_1.py)| _O(N)_ | _O(M)_ | Medium | | Mono Deque |
-|D2| [Running on Fumes - Chapter 2](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D2)|  | _O(NlogN)_ | _O(N)_ | Hard | | Segment Tree |
+|D2| [Running on Fumes - Chapter 2](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D2)|  | _O(NlogN)_ | _O(N)_ | Hard | | DFS, Segment Tree |

@@ -62,7 +62,7 @@ class SegmentTree(object):  # 0-based index
                     self.lazy[y] = None
                 n //= 2
 
-        result = self.default_val
+        result = None
         if L > R:
             return result
 
@@ -130,14 +130,14 @@ def running_on_fumes_chapter_2():
     segment_tree = SegmentTree(K, default_val=INF)
     segment_tree.update(0, 0, 0)
     node, prev = A, -1
-    for k in xrange(K):
-        min_C = bfs(adj, C, parents, node, prev, min(k, M))
+    for i in xrange(K):
+        min_C = bfs(adj, C, parents, node, prev, min(i, M-1))
         for d, min_c in enumerate(min_C):
             if min_c == INF:
                 continue
-            min_cs = segment_tree.query(max(k-(M-d), 0), max(k-1, 0))
+            min_cs = segment_tree.query(max(i-(M-d), 0), max(i-1, 0))
             if min_cs < INF-min_c:
-                segment_tree.update(k-d, k-d, min_cs+min_c)
+                segment_tree.update(i-d, i-d, min_cs+min_c)
         node, prev = parents[node], node
     result = segment_tree.query(max(K-M, 0), K-1)
     return result if result != INF else -1

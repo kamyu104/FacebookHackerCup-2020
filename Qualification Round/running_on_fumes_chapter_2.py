@@ -123,22 +123,22 @@ def running_on_fumes_chapter_2():
         adj[i].append(parent)
         adj[parent].append(i)
     parents = dfs(adj, B)
-    node, K = A, 0
-    while node != B:
-        node = parents[node]
+    curr, K = A, 0
+    while curr != B:
+        curr = parents[curr]
         K += 1
     segment_tree = SegmentTree(K, default_val=INF)
     segment_tree.update(0, 0, 0)
-    node, prev = A, -1
+    curr, prev = A, -1
     for i in xrange(K):
-        min_C = bfs(adj, C, parents, node, prev, min(i, M-1))
+        min_C = bfs(adj, C, parents, curr, prev, min(i, M-1))
         for d, min_c in enumerate(min_C):
             if min_c == INF:
                 continue
             min_cs = segment_tree.query(max(i-(M-d), 0), max(i-1, 0))
             if min_cs < INF-min_c:
                 segment_tree.update(i-d, i-d, min_cs+min_c)
-        node, prev = parents[node], node
+        curr, prev = parents[curr], curr
     result = segment_tree.query(max(K-M, 0), K-1)
     return result if result != INF else -1
 

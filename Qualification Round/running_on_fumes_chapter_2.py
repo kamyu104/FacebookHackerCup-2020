@@ -7,10 +7,6 @@
 # Space: O(N)
 #
 
-MAX_N = 10**6
-MAX_C = 10**9
-INF = (MAX_N-2)*MAX_C+1
-
 # Template: https://github.com/kamyu104/FacebookHackerCup-2018/blob/master/Round%202/fossil_fuels.py
 # Range Minimum Query
 class SegmentTree(object):  # 0-based index
@@ -18,7 +14,7 @@ class SegmentTree(object):  # 0-based index
                  build_fn=lambda x, y: [y]*(2*x),
                  query_fn=lambda x, y: y if x is None else min(x, y),
                  update_fn=lambda x, y: y if x is None else min(x, y),
-                 default_val=INF):
+                 default_val=float("inf")):
         self.N = N
         self.H = (N-1).bit_length()
         self.query_fn = query_fn
@@ -131,7 +127,7 @@ def running_on_fumes_chapter_2():
     while node != B:
         node = parents[node]
         K += 1
-    segment_tree = SegmentTree(K)
+    segment_tree = SegmentTree(K, default_val=INF)
     segment_tree.update(0, 0, 0)
     node, prev = A, -1
     for k in xrange(K):
@@ -146,5 +142,8 @@ def running_on_fumes_chapter_2():
     result = segment_tree.query(max(K-M, 0), K-1)
     return result if result != INF else -1
 
+MAX_N = 10**6
+MAX_C = 10**9
+INF = (MAX_N-2)*MAX_C+1
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, running_on_fumes_chapter_2())

@@ -94,7 +94,7 @@ def dfs(adj, root):
             stk.append(child)
     return parents
 
-def bfs(adj, C, parents, root, prev, max_d):
+def bfs(adj, C, parents, root, exclude, max_d):
     min_C = []
     q = [root]
     while q and len(min_C) <= max_d:
@@ -104,7 +104,7 @@ def bfs(adj, C, parents, root, prev, max_d):
             if C[node]:
                  min_C[-1] =  min(min_C[-1], C[node])
             for child in adj[node]:
-                if parents[child] == node and child != prev:
+                if parents[child] == node and child != exclude:
                     new_q.append(child)
         q = new_q
     return min_C

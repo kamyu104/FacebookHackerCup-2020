@@ -62,7 +62,7 @@ class SegmentTree(object):  # 0-based index
                     self.lazy[y] = None
                 n //= 2
 
-        result = None
+        result = self.default_val
         if L > R:
             return result
 
@@ -135,7 +135,7 @@ def running_on_fumes_chapter_2():
         for d, min_c in enumerate(min_C):
             if min_c == INF:
                 continue
-            min_cs = segment_tree.query(max(k-(M-d), 0), k)
+            min_cs = segment_tree.query(max(k-(M-d), 0), max(k-1, 0))
             if min_cs < INF-min_c:
                 segment_tree.update(k-d, k-d, min_cs+min_c)
         node, prev = parents[node], node

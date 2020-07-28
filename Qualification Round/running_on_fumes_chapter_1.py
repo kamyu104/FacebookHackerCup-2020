@@ -1,7 +1,7 @@
 # Copyright (c) 2020 kamyu. All rights reserved.
 #
 # Facebook Hacker Cup 2020 Qualification Round - Problem D1. Running on Fumes - Chapter 1
-# https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D
+# https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D1
 #
 # Time:  O(N)
 # Space: O(M)

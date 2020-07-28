@@ -129,13 +129,13 @@ def running_on_fumes_chapter_2():
         K += 1
     segment_tree = SegmentTree(K, default_val=INF)
     segment_tree.update(0, 0, 0)
-    curr, prev = A, -1
-    for i in xrange(K):
+    curr, prev = parents[A], A
+    for i in xrange(1, K):
         min_C = bfs(adj, C, parents, curr, prev, min(i, M-1))
         for d, min_c in enumerate(min_C):
             if min_c == INF:
                 continue
-            min_cs = segment_tree.query(max(i-(M-d), 0), max(i-1, 0))
+            min_cs = segment_tree.query(max(i-(M-d), 0), i-1)
             if min_cs < INF-min_c:
                 segment_tree.update(i-d, i-d, min_cs+min_c)
         curr, prev = parents[curr], curr

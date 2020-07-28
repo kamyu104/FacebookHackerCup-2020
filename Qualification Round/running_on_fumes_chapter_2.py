@@ -146,6 +146,6 @@ def running_on_fumes_chapter_2():
 
 MAX_N = 10**6
 MAX_C = 10**9
-INF = MAX_N*MAX_C+1
+INF = (MAX_N-2)*MAX_C+1
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, running_on_fumes_chapter_2())

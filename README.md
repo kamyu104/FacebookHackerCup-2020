@@ -8,7 +8,7 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 ## Qualification Round
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Travel Restrictions](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/A)| [Python](./Qualification%20Round/travel_restrictions.py)| _O(N^2)_ | _O(N^2)_ | Easy | | Graph |
+|A| [Travel Restrictions](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/A)| [Python](./Qualification%20Round/travel_restrictions.py)| _O(N^2)_ | _O(1)_ | Easy | | Graph |
 |B| [Alchemy](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/B)| [Python](./Qualification%20Round/alchemy.py)| _O(N)_ | _O(1)_ | Easy | | Math |
 |C| [Timber](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/C) | [Python](./Qualification%20Round/timber.py) | _O(NlogN)_ | _O(N)_ | Medium | | DP |
 |D1| [Running on Fumes - Chapter 1](https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/D1)| [Python](./Qualification%20Round/running_on_fumes_chapter_1.py) | _O(N)_ | _O(M)_ | Medium | | Mono Deque |

@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/qualification-round/problems/A
 #
 # Time:  O(N^2)
-# Space: O(N^2)
+# Space: O(1), excluding the space of output
 #
 
 def travel_restrictions():

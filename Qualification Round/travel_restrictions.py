@@ -10,18 +10,15 @@
 def travel_restrictions():
     N = input()
     I, O = [raw_input().strip() for _ in xrange(2)]
-    adj = [[0]*N for _ in xrange(N)]
-    for i in xrange(N):
-        for j in xrange(i, N):
-            adj[i][j] = 1
-            if j+1 == N or O[j] == 'N' or I[j+1] == 'N':
-                break
-    for i in xrange(N):
-        for j in reversed(xrange(i+1)):
-            adj[i][j] = 1
-            if j-1 == -1 or O[j] == 'N' or I[j-1] == 'N':
-                break
-    return "\n" + "\n".join("".join(map(lambda x: "NY"[x], row)) for row in adj)
+    result = []
+    for start in xrange(N):
+        left = right = start
+        while left-1 >= 0 and O[left] == I[left-1] == 'Y':
+            left -= 1
+        while right+1 < N and O[right] == I[right+1] == 'Y':
+            right += 1
+        result.append('N'*left + 'Y'*(right-left+1) + 'N'*(N-1-right))
+    return "\n" + "\n".join(result)
 
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, travel_restrictions())

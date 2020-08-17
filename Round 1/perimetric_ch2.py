@@ -136,7 +136,7 @@ def perimetric_ch1():
     for _ in xrange(K, N):
         H.append((A_H*H[-2] + B_H*H[-1] + C_H) % D_H + 1)
 
-    P, intervals, accu = [], SkipList(end=(float("inf"), float("inf")), can_duplicated=False), 0
+    P, intervals, accu = [], SkipList(end=(float("inf"), float("inf"))), 0
     intervals.add((float("-inf"), float("-inf")))
     for i in xrange(N):
         accu = process_rect(L[i], L[i]+W[i], H[i], intervals, P, accu)

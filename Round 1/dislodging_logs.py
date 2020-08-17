@@ -40,6 +40,5 @@ def dislodging_logs():
             left = mid+1
     return left
 
-MOD = 10**9+7
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, dislodging_logs())

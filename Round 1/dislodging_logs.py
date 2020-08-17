@@ -7,7 +7,7 @@
 # Space: O(N + M)
 #
 
-def check(P, Q, x):
+def check(P, Q, x):  # Time: O(M + N)
     left = 0
     for p in P:
         for right in xrange(left, len(Q)):

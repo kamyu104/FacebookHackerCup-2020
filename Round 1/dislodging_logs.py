@@ -12,10 +12,10 @@ def check(P, Q, x):
     for p in P:
         for right in xrange(left, len(Q)):
             if min(abs(Q[left]-p), abs(Q[right]-p)) + Q[right]-Q[left] > x:  # greedy
+                left = right
                 break
         else:  # fully covered
             return True
-        left = right
     return False
 
 def dislodging_logs():

@@ -107,18 +107,18 @@ class SkipList(object):
         return "\n".join(map(lambda x: "->".join(x), result))
 
 def process_rect(left, right, h, intervals, P, accu):
-    accu += 2*(right-left+h)
+    accu += 2*(right-left+h)  # add full perimeter
     left_it = intervals.lower_bound((left, float("-inf"), float("-inf"))).prevs[0]
     right_it = intervals.lower_bound((right+1, float("-inf"), float("-inf")))
     it = left_it
     while it.val[0] < right_it.val[0]:
         jt, it = it, it.nexts[0]
         if jt.val[2]:
-            accu -= 2*(min(right, it.val[0])-max(left, jt.val[0]))
+            accu -= 2*(min(right, it.val[0])-max(left, jt.val[0]))  # exclude counted width perimieter
         if jt.val[0] >= left:
-            accu -= abs(jt.val[1]-jt.val[2])
+            accu -= abs(jt.val[1]-jt.val[2])  # exclude counted height up or down perimieter
             intervals.remove(jt.val)
-    accu -= left_it.val[2]+right_it.val[1]
+    accu -= left_it.val[2]+right_it.val[1] # exclude counted height up and down perimieter
     P.append(accu)
     if left_it.val[2] != h:
         intervals.add((left, left_it.val[2], h))

@@ -116,7 +116,7 @@ def process_rect(left, right, h, intervals, P, accu):
         accu -= 2*(it.val[1]-it.val[0]+h)
         it, to_delete = it.nexts[0], it
         intervals.remove(to_delete.val)
-    accu += 2*(right-left+h)
+    accu += 2*(right-left+h)  # add full perimeter
     P.append(accu)
     intervals.add((left, right))
     return accu

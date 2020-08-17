@@ -13,10 +13,9 @@ def process_rect(L, W, H, i, P, dq, accu):
     while dq and L[i]-L[dq[0]] > W:
         dq.popleft()
     if not dq:
-        delta = 2*(W+H[i])
+        accu += 2*(W+H[i])
     else:
-        delta = 2*((L[i]-L[i-1])+max(H[i]-H[dq[0]], 0))
-    accu = (accu+delta)%MOD
+        accu += 2*((L[i]-L[dq[-1]])+max(H[i]-H[dq[0]], 0))
     P.append(accu)
     while dq and H[dq[-1]] <= H[i]:
         dq.pop()

@@ -118,7 +118,7 @@ def process_rect(left, right, h, intervals, P, accu):
         if jt.val[0] >= left:
             accu -= abs(jt.val[1]-jt.val[2])  # exclude counted height up or down perimieter
             intervals.remove(jt.val)
-    accu -= left_it.val[2]+right_it.val[1] # exclude counted height up and down perimieter
+    accu -= left_it.val[2]+right_it.val[1] # exclude counted first height up and last height down perimieter
     P.append(accu)
     if left_it.val[2] != h:
         intervals.add((left, left_it.val[2], h))

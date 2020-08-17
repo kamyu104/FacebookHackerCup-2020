@@ -88,7 +88,7 @@ def quarantine():
     
     preorder_tree = PreorderTree(0, N, adj)
     C, region_cnt, base = [0]*N, 0, 0
-    for i in xrange(N):  # fill flood in preorder sequence
+    for i in xrange(N):  # flood fill in preorder traversal
         node = preorder_tree.idx(i)
         if S[node] == '#' or C[node]:
             continue
@@ -97,17 +97,17 @@ def quarantine():
         base += node_cnt*(node_cnt-1)//2
         region_cnt += 1
     subtree_pair = [(0, 0)]*N
-    for i in reversed(xrange(N)):  # count subtree max_count in reversed preorder sequence
+    for i in reversed(xrange(N)):  # count subtree max_count in reversed preorder traversal
         node = preorder_tree.idx(i)
         subtree_pair[node] = (C[node], 1)
         for child in adj[node]:
             subtree_pair[node] = max_count(subtree_pair[node], subtree_pair[child])
     prefix_pair = [(0, 0)]*(N+1)
-    for i in xrange(N):  # count prefix max_count in preorder sequence
+    for i in xrange(N):  # count prefix max_count in preorder traversal
         node = preorder_tree.idx(i)
         prefix_pair[i+1] = max_count(prefix_pair[i], (C[node], 1))
     suffix_pair = [(0, 0)]*(N+1)
-    for i in reversed(xrange(N)):  # count suffix max_count in reversed preorder sequence
+    for i in reversed(xrange(N)):  # count suffix max_count in reversed preorder traversal
         node = preorder_tree.idx(i)
         suffix_pair[i] = max_count(suffix_pair[i+1], (C[node], 1))
     result = (0, 0)

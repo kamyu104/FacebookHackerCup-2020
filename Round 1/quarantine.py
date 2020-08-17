@@ -128,6 +128,5 @@ def quarantine():
         result = max_count(result, curr)
     return "%s %s" % result
 
-MOD = 10**9+7
 for case in xrange(input()):
     print 'Case #%d: %s' % (case+1, quarantine())

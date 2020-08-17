@@ -80,7 +80,6 @@ def quarantine():
     A, B, C = map(int, raw_input().strip().split())
     for i in xrange(K+1, N):
         E.append((A*E[-2] + B*E[-1] + C) % i + 1)
-    assert(len(E) == N)
     adj = defaultdict(list)
     for i in xrange(len(E)):
         E[i] -= 1

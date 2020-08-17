@@ -29,6 +29,7 @@ def dislodging_logs():
     A_Q, B_Q, C_Q, D_Q = map(int, raw_input().strip().split())
     for _ in xrange(K, M):
         Q.append((A_Q*Q[-2] + B_Q*Q[-1] + C_Q) % D_Q + 1)
+
     P.sort(), Q.sort()
     left, right = 1, max(max(Q)-min(P), max(P)-min(Q))
     while left <= right:

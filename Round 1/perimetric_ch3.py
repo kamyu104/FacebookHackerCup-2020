@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Round 1 - Problem A. Perimetric - Chapter 3
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/A3
 #
-# Time:  O(NlogN)
+# Time:  O(NlogN), pass in PyPy2 but Python2
 # Space: O(N)
 #
 

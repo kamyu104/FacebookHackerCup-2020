@@ -106,7 +106,7 @@ class SkipList(object):
                 curr = curr.nexts[i]
         return "\n".join(map(lambda x: "->".join(x), result))
 
-def process_rect(left, right, h, intervals, P, accu):
+def process_rect(left, right, h, P, intervals, accu):
     it = intervals.lower_bound((left, float("-inf"))).prevs[0]
     if it.val[1] < left:
         it = it.nexts[0]
@@ -139,7 +139,7 @@ def perimetric_ch1():
     P, intervals, accu = [], SkipList(end=(float("inf"), float("inf"))), 0
     intervals.add((float("-inf"), float("-inf")))
     for i in xrange(N):
-        accu = process_rect(L[i], L[i]+W[i], H[i], intervals, P, accu)
+        accu = process_rect(L[i], L[i]+W[i], H[i], P, intervals, accu)
     return reduce(lambda x, y: (x*y)%MOD, P)
 
 MOD = 10**9+7

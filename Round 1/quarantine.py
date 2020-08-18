@@ -47,7 +47,7 @@ class PreorderTree(object):
     def right(self, i):
         return self.__right[i]
 
-def count_nodes(S, adj, i):
+def get_count(S, adj, i):
     cnt = 0
     stk = [i]
     while stk:
@@ -91,7 +91,7 @@ def quarantine():
         node = preorder_tree.at(i)
         if S[node] == '#' or C[node]:
             continue
-        node_cnt = count_nodes(S, adj, node)
+        node_cnt = get_count(S, adj, node)
         set_count(S, adj, node, node_cnt, C)
         base += node_cnt*(node_cnt-1)//2
         region_cnt += 1

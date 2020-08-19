@@ -120,12 +120,12 @@ def quarantine():
             result = max_count(result, (base + inside[0]*outside[0], inside[1]*outside[1]))
     else:
         for i in xrange(1, N):  # count each edge
-            if (S[i] == '#' or S[E[i]] == '#'):  # any edge could be inserted between inside and outside
-                inside = (0, preorder_tree.right(i)-preorder_tree.left(i))
-                outside = (0, N-inside[1])
-            else:  # a edge could be only inserted between safe nodes of inside and safe nodes of outside
+            if S[i] == '*' and S[E[i]] == '*':  # a edge could be only inserted between safe nodes of inside and safe nodes of outside
                 inside = subtree_pair[i]
                 outside = max_count(prefix_pair[preorder_tree.left(i)], suffix_pair[preorder_tree.right(i)])
+            else:  # any edge could be inserted between inside and outside
+                inside = (0, preorder_tree.right(i)-preorder_tree.left(i))
+                outside = (0, N-inside[1])
             curr = (base, inside[1]*outside[1])  # max number of pairs won't be changed if region_count is 1
             result = max_count(result, curr)
     return "%s %s" % result

@@ -69,9 +69,10 @@ def set_count(S, adj, i, cnt, C):
         for child in reversed(adj[node]):
             stk.append(child)
 
-def max_count(a, b):
-    M = max(a[0], b[0])
-    return (M, (a[1] if a[0] == M else 0) + (b[1] if b[0] == M else 0))
+def max_count(x, y):
+    if x[0] != y[0]:
+        return max(x, y)
+    return (x[0], x[1]+y[1])
 
 def quarantine():
     N, K = map(int, raw_input().strip().split())

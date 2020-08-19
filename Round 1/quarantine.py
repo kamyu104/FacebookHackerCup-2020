@@ -86,15 +86,15 @@ def quarantine():
         adj[E[i]].append(i)
     
     preorder_tree = PreorderTree(0, N, adj)
-    C, region_cnt, base = [0]*N, 0, 0
+    C, region_count, base = [0]*N, 0, 0
     for i in xrange(N):  # flood fill in preorder traversal
         node = preorder_tree.at(i)
         if S[node] == '#' or C[node]:
             continue
-        node_cnt = get_count(S, adj, node)
-        set_count(S, adj, node, node_cnt, C)
-        base += node_cnt*(node_cnt-1)//2
-        region_cnt += 1
+        node_count = get_count(S, adj, node)
+        set_count(S, adj, node, node_count, C)
+        base += node_count*(node_count-1)//2
+        region_count += 1
     subtree_pair = [(0, 0)]*N
     for i in reversed(xrange(N)):  # count subtree max_count in reversed preorder traversal
         node = preorder_tree.at(i)
@@ -110,21 +110,23 @@ def quarantine():
         node = preorder_tree.at(i)
         suffix_pair[i] = max_count(suffix_pair[i+1], (C[node], 1))
     result = (0, 0)
-    for i in xrange(1, N):  # count each edge
-        if not (S[i] == '#' or S[E[i]] == '#' or region_cnt == 1):
-            continue
-        if region_cnt != 1:
+    if region_count != 1:
+        for i in xrange(1, N):  # count each edge
+            if S[i] == '*' and S[E[i]] == '*':
+                continue
+            # a edge could be only inserted between safe nodes of inside and outside
             inside = subtree_pair[i]
             outside = max_count(prefix_pair[preorder_tree.left(i)], suffix_pair[preorder_tree.right(i)])
-            curr = (base + inside[0]*outside[0], inside[1]*outside[1])
-        else:
-            if (S[i] == '#' or S[E[i]] == '#'):
-                inside = (0, preorder_tree.right(i)-preorder_tree.left(i))
-                outside = (0, N-inside[1])
-            else:
-                inside = subtree_pair[i]
-                outside = max_count(prefix_pair[preorder_tree.left(i)], suffix_pair[preorder_tree.right(i)])
-            curr = (base, inside[1]*outside[1])
+            result = max_count(result, (base + inside[0]*outside[0], inside[1]*outside[1]))
+        return "%s %s" % result
+    for i in xrange(1, N):  # count each edge
+        if (S[i] == '#' or S[E[i]] == '#'):  # any edge could be inserted between inside and outside
+            inside = (0, preorder_tree.right(i)-preorder_tree.left(i))
+            outside = (0, N-inside[1])
+        else:  # a edge could be only inserted between safe nodes of inside and safe nodes of outside
+            inside = subtree_pair[i]
+            outside = max_count(prefix_pair[preorder_tree.left(i)], suffix_pair[preorder_tree.right(i)])
+        curr = (base, inside[1]*outside[1])  # max number of pairs won't be changed if region_count is 1
         result = max_count(result, curr)
     return "%s %s" % result
 

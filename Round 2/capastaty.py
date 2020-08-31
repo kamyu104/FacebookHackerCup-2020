@@ -24,7 +24,7 @@ def capastaty():
         add_right += max((X[i]+Y[i])-S[i], 0)
         remove_left += max(S[i]-(X[i]+Y[i]), 0)
         remove_right += max(S[i]-X[i], 0)
-    if not (remove_left <= add_right and add_left <= remove_right):
+    if not (add_left <= remove_right and remove_left <= add_right):
         return -1
     return max(add_left, remove_left)
 

@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Round 2 - Problem B. Elimination
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/B
 #
-# Time:  O((N * M + E) * log(N * M)) = O((N * M + E) * (logN + logM))
+# Time:  O((N * M + E) * log(N * M)) = O((N * M + E) * (logN + logM)), pass in PyPy2 but Python2
 # Space: O(N * M)
 #
 
@@ -146,12 +146,12 @@ def circular_circles():
 
     weights = [1]*(M*N + N)
     circle_weights = [SkipList() for _ in xrange(N)]
-    half_circle_weights = [[SkipList(), SkipList()] for _ in xrange(N)]
+    half_circle_weights = [[SkipList() for _ in xrange(2)] for _ in xrange(N)]
     circle_delta_weights, inter_circle_weights = SkipList(), SkipList()
     for i in xrange(N):
         if X[i] > Y[i]:
             X[i], Y[i] = Y[i], X[i]
-        for j in xrange(2):
+        for j in xrange(len(half_circle_weights[i])):
             half_circle_weights[i][j].add(0)
         for j in xrange(M):
             circle_weights[i].add(1)

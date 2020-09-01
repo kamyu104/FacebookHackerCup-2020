@@ -26,7 +26,7 @@ def elimination():
     dp = [[0.0]*N for _ in xrange(N)]
     for b in xrange(N):
         for w in xrange(N-b):
-            if not b+w:
+            if (b, w) == (0, 0):
                 continue
             dp[b][w] = expected_count(dp, b, w, False)*P + expected_count(dp, w, b, True)*(1-P)
     return "\n" + "\n".join("%.8f" % (dp[N-1-i][i]) for i in xrange(N))

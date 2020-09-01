@@ -159,15 +159,15 @@ def circular_circles():
         circle_delta_weights.add(max_delta_weight(circle_weights, half_circle_weights, i))
         inter_circle_weights.add(1)
 
-    result, total, top1_sum = 1, N*M+N, N
+    result, total, max_circle_weight_sum = 1, N*M+N, N
     for j, w2 in izip(I, W):
         w1, weights[j]  = weights[j], w2
         total += w2-w1
         if j < N*M:
-            top1_sum += update_circle_edge(X, Y, circle_weights, half_circle_weights, circle_delta_weights, j//M, j%M, w1, w2)
+            max_circle_weight_sum += update_circle_edge(X, Y, circle_weights, half_circle_weights, circle_delta_weights, j//M, j%M, w1, w2)
         else:
             update(inter_circle_weights, w1, w2)
-        curr = (total-top1_sum-max(circle_delta_weights.begin().val, inter_circle_weights.begin().val)) % MOD
+        curr = (total-max_circle_weight_sum-max(circle_delta_weights.begin().val, inter_circle_weights.begin().val)) % MOD
         result = result*curr % MOD
     return result
 

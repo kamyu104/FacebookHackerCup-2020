@@ -22,7 +22,7 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A1| [Perimetric - Chapter 1](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/A1)| [Python](./Round%201/perimetric_ch1.py)| _O(N)_ | _O(N)_ | Easy | | Mono Deque |
 |A2| [Perimetric - Chapter 2](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/A2)| [Python](./Round%201/perimetric_ch2.py)| _O(NlogN)_ | _O(N)_ | Medium | | Skip List, Line Sweep |
-|A3| [Perimetric - Chapter 3](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/A3) | [PyPy2](./Round%201/perimetric_ch3.py) | _O(NlogN)_ | _O(N)_ | Hard | | Skip List, Line Sweep |
+|A3| [Perimetric - Chapter 3](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/A3) | [PyPy](./Round%201/perimetric_ch3.py) | _O(NlogN)_ | _O(N)_ | Hard | | Skip List, Line Sweep |
 |B| [Dislodging Logs](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/B)| [Python](./Round%201/dislodging_logs.py) | _O(NlogN + MlogM + (M + N) * log(max(max(Q)-min(P), max(P)-min(Q))))_ | _O(N + M)_ | Easy | | Binary Search, Greedy |
 |C| [Quarantine](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-1/problems/C)| [Python](./Round%201/quarantine.py) | _O(N)_ | _O(N)_ | Hard | | Preorder Traversal, Flood Fill, DP |
 

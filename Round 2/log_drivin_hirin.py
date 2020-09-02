@@ -198,7 +198,7 @@ def iter_tree_traversal(N, children, L, H, Q):
         for j in children[i]:
             if len(lines[idx[i]]) < len(lines[idx[j]]):
                 lines[idx[i]], lines[idx[j]] = lines[idx[j]], lines[idx[i]]
-            for k, m, p in lines[idx[j]].gen():  # merged at most O(logN) times, and each at most cost O(NlogN)
+            for k, m, _ in lines[idx[j]].gen():  # merged at most O(logN) times, and each at most cost O(NlogN)
                 lines[idx[i]].add(k, m)
             lines[idx[j]] = None  # clear
         lines[idx[i]].add(-d, -(-query_result(i, d, H[i]) if children[i] else 0))

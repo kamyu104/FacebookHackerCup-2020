@@ -142,10 +142,8 @@ class LineContainer(object):
             self.__skiplist.remove(to_del.val)
             self.__intersect(x, y)
             y = x
-        assert(len(self.__skiplist) > 0)
     
     def query(self, x):
-        assert(len(self.__skiplist) > 0)
         it = self.__skiplist.lower_bound(x, cmp=lambda x, y: x[2] < y)
         return it.val[0]* x + it.val[1]
 

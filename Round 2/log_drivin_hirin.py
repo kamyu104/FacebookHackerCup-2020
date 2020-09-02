@@ -178,7 +178,7 @@ def read(K, N, D):
     return X
 
 def iter_tree_traversal(N, children, L, H, Q):
-    def max_y(i, d, c):
+    def max_y(i, d, c):  # Time: O(logN)
         return c*d + lines[idx[i]].query(c)
 
     def init(i):
@@ -197,8 +197,8 @@ def iter_tree_traversal(N, children, L, H, Q):
                 lines[idx[i]], lines[idx[j]] = lines[idx[j]], lines[idx[i]]
             for k, m, _ in lines[idx[j]]:  # merged at most O(logN) times, and each at most costs time O(NlogN)
                 lines[idx[i]].add(k, m)
-        lines[idx[i]].add(-d, -(-max_y(i, d, H[i]) if children[i] else 0))
-        for c in Q[i]:
+        lines[idx[i]].add(-d, -(-max_y(i, d, H[i]) if children[i] else 0))  # O(N) times
+        for c in Q[i]:  # O(M) times
             result[0] = result[0] * ((-max_y(i, d, c) + 1) % MOD) % MOD
 
     result, stk, at, idx, lines = [1], [], [0], [-1]*N, [LineContainer() for _ in xrange(N)]

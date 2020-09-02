@@ -10,7 +10,7 @@
 from functools import partial
 from random import randint, seed
 
-# Template:
+# Template modified from:
 # https://github.com/kamyu104/LeetCode-Solutions/blob/master/Python/design-skiplist.py
 class SkipNode(object):
     def __init__(self, level=0, val=None):

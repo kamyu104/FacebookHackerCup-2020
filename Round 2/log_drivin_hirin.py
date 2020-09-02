@@ -22,7 +22,7 @@ class SkipList(object):
     P_NUMERATOR, P_DENOMINATOR = 1, 2  # P = 1/4 in redis implementation
     MAX_LEVEL = 32  # enough for 2^32 elements
 
-    def __init__(self, end=[float("inf"), float("inf"), float("inf")], can_duplicated=False):
+    def __init__(self, end=[float("inf"), float("inf"), float("inf")], can_duplicated=True):
         seed(0)
         self.__head = SkipNode()
         self.__len = 0
@@ -44,7 +44,7 @@ class SkipList(object):
         
     def add(self, val):
         if not self.__can_duplicated and self.find(val):
-            return False
+            return self.find(val), False
         node = SkipNode(self.__random_level(), val)
         if len(self.__head.nexts) < len(node.nexts): 
             self.__head.nexts.extend([None]*(len(node.nexts)-len(self.__head.nexts)))
@@ -56,13 +56,13 @@ class SkipList(object):
             prevs[i].nexts[i] = node
             node.prevs[i] = prevs[i]
         self.__len += 1
-        return True
+        return node if self.__can_duplicated else (node, True)
 
-    def remove(self, val):
-        prevs = self.__find_prev_nodes(val)
-        curr = self.__find(val, prevs)
+    def remove(self, it):
+        prevs = it.prevs
+        curr = self.__find(it.val, prevs)
         if not curr:
-            return False
+            return self.__end
         self.__len -= 1   
         for i in reversed(xrange(len(curr.nexts))):
             prevs[i].nexts[i] = curr.nexts[i]
@@ -70,7 +70,7 @@ class SkipList(object):
                 curr.nexts[i].prevs[i] = prevs[i]
             if not self.__head.nexts[i]:
                 self.__head.nexts.pop()
-        return True
+        return curr.nexts[0]
     
     def __lower_bound(self, val, prevs):
         if prevs:
@@ -126,21 +126,18 @@ class LineContainer(object):
         x = y = z
         z = z.nexts[0]
         while self.__intersect(y, z):
-            z, to_del = z.nexts[0], z
-            self.__skiplist.remove(to_del.val)
+            z = self.__skiplist.remove(z)
         if x != self.__skiplist.begin():
             x = x.prevs[0]
             if self.__intersect(x, y):
-                y, to_del = y.nexts[0], y
-                self.__skiplist.remove(to_del.val)
+                y = self.__skiplist.remove(y)
                 self.__intersect(x, y)
         y = x
         while y != self.__skiplist.begin():
             x = x.prevs[0]
             if x.val[2] < y.val[2]:
                 break
-            y, to_del = y.nexts[0], y
-            self.__skiplist.remove(to_del.val)
+            y = self.__skiplist.remove(y)
             self.__intersect(x, y)
             y = x
     
@@ -200,7 +197,6 @@ def iter_tree_traversal(N, children, L, H, Q):
                 lines[idx[i]], lines[idx[j]] = lines[idx[j]], lines[idx[i]]
             for k, m, _ in lines[idx[j]].gen():  # merged at most O(logN) times, and each at most costs time O(NlogN)
                 lines[idx[i]].add(k, m)
-            lines[idx[j]] = None  # clear
         lines[idx[i]].add(-d, -(-query_result(i, d, H[i]) if children[i] else 0))
         for c in Q[i]:
             result[0] = result[0] * ((-query_result(i, d, c) + 1) % MOD) % MOD

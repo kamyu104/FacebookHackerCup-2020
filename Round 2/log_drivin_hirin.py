@@ -114,7 +114,8 @@ class SkipList(object):
                 curr = curr.nexts[i]
         return "\n".join(map(lambda x: "->".join(x), result))
 
-
+# Template translated from:
+# https://github.com/kth-competitive-programming/kactl/blob/master/content/data-structures/LineContainer.h
 class LineContainer(object):
     def __init__(self):
         self.__skiplist = SkipList()

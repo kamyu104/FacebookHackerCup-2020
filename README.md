@@ -31,5 +31,5 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
 |A| [Ca-pasta-ty](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/A)| [Python](./Round%202/capastaty.py)| _O(N)_ | _O(1)_ | Easy | | Math |
 |B| [Elimination](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/B)| [Python](./Round%202/elimination.py) | _O(N^2)_ | _O(N^2)_ | Medium | | Math, DP |
-|C| [Circular Circles](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/C)| [Python](./Round%202/circular_circles.py) | _O((N * M + E) * (logN + logM))_ | _O(N)_ | Medium | | Skip List |
+|C| [Circular Circles](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/C)| [PyPy](./Round%202/circular_circles.py) | _O((N * M + E) * (logN + logM))_ | _O(N)_ | Medium | | Skip List |
 |D| [Log Drivin' Hirin'](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/D)| [Python](./Round%202/log_drivin_hirin.py) | _O(N * (logN)^2 + MlogN)_ | _O(N)_ | Hard | | Skip List, Dynamic Convex Hull Trick |

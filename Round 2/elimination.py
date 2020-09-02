@@ -3,8 +3,8 @@
 # Facebook Hacker Cup 2020 Round 2 - Problem B. Elimination
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/B
 #
-# Time:  O(N)
-# Space: O(1)
+# Time:  O(N^2)
+# Space: O(N^2)
 #
 
 def pair_count(x):

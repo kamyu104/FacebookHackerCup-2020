@@ -145,7 +145,7 @@ class LineContainer(object):
         it = self.__skiplist.lower_bound(x, cmp=lambda x, y: x[2] < y)
         return it.val[0]* x + it.val[1]
 
-    def gen(self):
+    def __iter__(self):
         it = self.__skiplist.begin()
         while it != self.__skiplist.end():
             yield it.val
@@ -195,7 +195,7 @@ def iter_tree_traversal(N, children, L, H, Q):
         for j in children[i]:
             if len(lines[idx[i]]) < len(lines[idx[j]]):
                 lines[idx[i]], lines[idx[j]] = lines[idx[j]], lines[idx[i]]
-            for k, m, _ in lines[idx[j]].gen():  # merged at most O(logN) times, and each at most costs time O(NlogN)
+            for k, m, _ in lines[idx[j]]:  # merged at most O(logN) times, and each at most costs time O(NlogN)
                 lines[idx[i]].add(k, m)
         lines[idx[i]].add(-d, -(-query_result(i, d, H[i]) if children[i] else 0))
         for c in Q[i]:

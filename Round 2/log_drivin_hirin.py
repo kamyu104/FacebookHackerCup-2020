@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Round 2 - Problem D. Log Drivin' Hirin'
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/D
 #
-# Time:  O(N * (logN)^2 + MlogN), pass in PyPy2 but Python2
+# Time:  O(N * (logN)^2 + MlogN)
 # Space: O(N)
 #
 

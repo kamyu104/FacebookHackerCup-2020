@@ -1,7 +1,7 @@
 # Copyright (c) 2020 kamyu. All rights reserved.
 #
-# Facebook Hacker Cup 2020 Round 2 - Problem B. Elimination
-# https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/B
+# Facebook Hacker Cup 2020 Round 2 - Problem C. Circular Circles
+# https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/C
 #
 # Time:  O((N * M + E) * log(N * M)) = O((N * M + E) * (logN + logM)), pass in PyPy2 but Python2
 # Space: O(N * M)

@@ -1,4 +1,4 @@
-# Copyright (c) 2020 kamyu. All rights reserved.
+	# Copyright (c) 2020 kamyu. All rights reserved.
 #
 # Facebook Hacker Cup 2020 Round 2 - Problem D. Log Drivin' Hirin'
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/D
@@ -192,12 +192,12 @@ def iter_tree_traversal(N, children, L, H, Q):
         stk.append(partial(init, i))
 
     def conquer(i, d):
-        for j in children[i]:
-            if len(lines[idx[i]]) < len(lines[idx[j]]):
-                lines[idx[i]], lines[idx[j]] = lines[idx[j]], lines[idx[i]]
-            for k, m, _ in lines[idx[j]]:  # merged at most O(logN) times, and each at most costs time O(NlogN)
+        for c in children[i]:
+            if len(lines[idx[i]]) < len(lines[idx[c]]):
+                lines[idx[i]], lines[idx[c]] = lines[idx[c]], lines[idx[i]]
+            for k, m, _ in lines[idx[c]]:  # merged at most O(logN) times, and each at most costs time O(NlogN)
                 lines[idx[i]].add(k, m)
-            lines[idx[j]] = None  # cleared
+            lines[idx[c]] = None  # cleared
         lines[idx[i]].add(-d, -(-max_y(i, d, H[i]) if children[i] else 0))  # O(N) times
         for c in Q[i]:  # O(M) times
             result[0] = result[0] * ((-max_y(i, d, c) + 1) % MOD) % MOD

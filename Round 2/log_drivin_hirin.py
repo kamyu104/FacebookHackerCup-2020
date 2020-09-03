@@ -1,4 +1,4 @@
-	# Copyright (c) 2020 kamyu. All rights reserved.
+# Copyright (c) 2020 kamyu. All rights reserved.
 #
 # Facebook Hacker Cup 2020 Round 2 - Problem D. Log Drivin' Hirin'
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-2/problems/D

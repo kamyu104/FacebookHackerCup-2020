@@ -100,10 +100,16 @@ class SkipList(object):
               level < SkipList.MAX_LEVEL:
             level += 1
         return level
+    
+    def __iter__(self):
+        it = self.begin()
+        while it != self.end():
+            yield it.val
+            it = it.nexts[0]
 
     def __len__(self):
         return self.__len-1  # excluding end node
-    
+
     def __str__(self):
         result = []
         for i in reversed(xrange(len(self.__head.nexts))):
@@ -145,12 +151,6 @@ class LineContainer(object):
         it = self.__skiplist.lower_bound(x, cmp=lambda x, y: x[2] < y)
         return it.val[0]* x + it.val[1]
 
-    def __iter__(self):
-        it = self.__skiplist.begin()
-        while it != self.__skiplist.end():
-            yield it.val
-            it = it.nexts[0]
-
     def __intersect(self, x, y):
         if y == self.__skiplist.end():
             x.val[2] = float("inf")
@@ -160,10 +160,13 @@ class LineContainer(object):
         else:
             x.val[2] = (y.val[1]-x.val[1])//(x.val[0]-y.val[0])
         return x.val[2] >= y.val[2]
-    
+
+    def __iter__(self):
+        return iter(self.__skiplist)
+
     def __len__(self):
         return len(self.__skiplist)
-    
+
     def __str__(self):
         return str(self.__skiplist)
 

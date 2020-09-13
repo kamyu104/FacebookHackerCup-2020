@@ -148,7 +148,7 @@ def railroad_renovations():
                 if not count[1]:
                     dp[j+1][k] = min(dp[j+1][k], dp[i][k])
                 else:
-                    dp[j+1][k] = min(dp[j+1][k], dp[i][k-min_cost] + 1)
+                    dp[j+1][k] = min(dp[j+1][k], dp[i][k-min_cost]+1)
     result = min(dp[N])
     return result if result != float("inf") else -1
 

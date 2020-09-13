@@ -139,7 +139,7 @@ def railroad_renovations():
             count[observations[j][2]] += 1
             if j+1 < N and observations[j][0] == observations[j+1][0]:
                 continue
-            min_cost = min(count)  # find min cost to all 0s before all 1s
+            min_cost = min(count)  # find min cost to make all 0s before all 1s
             curr_count = [0]*2
             for _, r in ordered_set:
                 curr_count[r] += 1

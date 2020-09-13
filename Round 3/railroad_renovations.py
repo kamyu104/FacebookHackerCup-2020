@@ -145,7 +145,10 @@ def railroad_renovations():
                 curr_count[r] += 1
                 min_cost = min(min_cost, curr_count[1]+(count[0]-curr_count[0]))
             for k in xrange(min_cost, K+1):
-                dp[j+1][k] = min(dp[j+1][k], dp[i][k-min_cost] + int(count[1] > 0))
+                if not count[1]:
+                    dp[j+1][k] = min(dp[j+1][k], dp[i][k])
+                else:
+                    dp[j+1][k] = min(dp[j+1][k], dp[i][k-min_cost] + 1)
     result = min(dp[N])
     return result if result != float("inf") else -1
 

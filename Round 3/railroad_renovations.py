@@ -127,7 +127,7 @@ def railroad_renovations():
         Pi, Ri = map(int, raw_input().strip().split())
         observations.append((Pi, i, Ri))
     observations.sort()
-    dp = [[float("inf")]*(K+1) for _ in xrange(N+1)]
+    dp = [[float("inf")]*(K+1) for _ in xrange(N+1)]  # dp[i][j]: min renovations after first i observations with j rearrangements
     dp[0][0] = 0
     for i in xrange(N):
         if i-1 >= 0 and observations[i][0] == observations[i-1][0]:

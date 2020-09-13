@@ -133,15 +133,15 @@ def railroad_renovations():
         if i-1 >= 0 and observations[i][0] == observations[i-1][0]:
             continue
         count = [0]*2
-        s = SkipList()
+        ordered_set = SkipList()
         for j in xrange(i, N):
-            s.add(observations[j][1:])
+            ordered_set.add(observations[j][1:])
             count[observations[j][2]] += 1
             if j+1 < N and observations[j][0] == observations[j+1][0]:
                 continue
             cost = min(count)
             curr_count = [0]*2
-            for _, r in s:
+            for _, r in ordered_set:
                 curr_count[r] += 1
                 cost = min(cost, curr_count[1]+(count[0]-curr_count[0]))
             for k in xrange(cost, K+1):

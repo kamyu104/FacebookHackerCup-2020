@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/B
 #
 # Time:  O(N^3)
-# Space: O(N^2)
+# Space: O(N * K)
 #
 
 from functools import partial

@@ -205,8 +205,8 @@ def check(S, P, X, n):
         if not ordered_set:
             return False
         it = ordered_set.lower_bound((capacity%X, 0))  # minimize the lost of key_count, key_count would be lost ⌊capacity/X⌋ if box_capacity%X >= capacity%X, otherwise ⌊capacity/X⌋+1
-        if it == ordered_set.end():  # greedily keep ordered_set
-            it = ordered_set.begin()  # discard the smallest box_capacity%X
+        if it == ordered_set.end():
+            it = ordered_set.begin()  # yield the smallest box_capacity%X to greedily keep more choices of ordered_set
         box_capacity = it.val[1]
         ordered_set.remove(it)
         key_count += (box_capacity-capacity)//X - box_capacity//X

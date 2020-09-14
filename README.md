@@ -37,7 +37,7 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 ## Round 3
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|A| [Chain Explosions](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/A)| [Python](./Round%202/chain_explosions.py)| _O(K^(1/2))_ | _O(1)_ | Easy | | Math |
-|B| [Railroad Renovations](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/B)| [Python](./Round%202/railroad_renovations.py) | _O(N^3)_ | _O(N^2)_ | Medium | | DP, Math |
-|C| [Mail Security](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/C)| [PyPy](./Round%202/mail_security.py) | _O((N + M) * (logN + logM)^2)_ | _O(N + M)_ | Hard | | Binary Search, Skip List, Greedy |
+|A| [Chain Explosions](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/A)| [Python](./Round%203/chain_explosions.py)| _O(K^(1/2))_ | _O(1)_ | Easy | | Math |
+|B| [Railroad Renovations](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/B)| [Python](./Round%203/railroad_renovations.py) | _O(N^3)_ | _O(N^2)_ | Medium | | DP, Math |
+|C| [Mail Security](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/C)| [PyPy](./Round%203/mail_security.py) | _O((N + M) * (logN + logM)^2)_ | _O(N + M)_ | Hard | | Binary Search, Skip List, Greedy |
 |D| [Smart Carts](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/D)| | _O(N^3)_ | _O(N)_ | Hard | | |

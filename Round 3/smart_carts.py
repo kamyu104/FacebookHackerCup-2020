@@ -77,7 +77,7 @@ def query(N, parent, line_count, initial_max_count, d, c, x, y, args):  # amorti
 
 def smart_carts():
     N = input()
-    child, parent = [[-1]*(N+2) for _ in xrange(2)], [[-1]*(N+2) for _ in xrange(2)]
+    parent, child = [[-1]*N for _ in xrange(2)], [[-1]*(N+2) for _ in xrange(2)]
     for i in xrange(N):
         parent[A][i], parent[B][i] = map(int, raw_input().strip().split())
         for config in [A, B]:

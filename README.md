@@ -1,4 +1,4 @@
-# [FacebookHackerCup-2020](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-CC%203.0-blue.svg)](https://creativecommons.org/licenses/by-nc/3.0/) ![Progress](https://img.shields.io/badge/progress-17%20%2F%2018-ff69b4.svg)
+# [FacebookHackerCup-2020](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-CC%203.0-blue.svg)](https://creativecommons.org/licenses/by-nc/3.0/) ![Progress](https://img.shields.io/badge/progress-18%20%2F%2018-ff69b4.svg)
 
 Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it will get TLE in the largest data set (total computation amount > `10^8`, which is not friendly for Python to solve in 5 ~ 15 seconds). A `6-minute` timer is set for uploading the result this year.
 
@@ -40,4 +40,4 @@ Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it 
 |A| [Chain Explosions](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/A)| [Python](./Round%203/chain_explosions.py)| _O(K^(1/2))_ | _O(1)_ | Easy | | Math |
 |B| [Railroad Renovations](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/B)| [Python](./Round%203/railroad_renovations.py) | _O(N^3)_ | _O(N * K)_ | Medium | | DP, Math |
 |C| [Mail Security](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/C)| [PyPy](./Round%203/mail_security.py) | _O((N + M) * (logN + logM)^2)_ | _O(N + M)_ | Hard | | Binary Search, Skip List, Greedy |
-|D| [Smart Carts](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/D)| | _O(N^3)_ | _O(N)_ | Hard | | |
+|D| [Smart Carts](https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/D)| [PyPy](./Round%203/smart_carts.py) | _O(N^3)_ | _O(N)_ | Hard | | |

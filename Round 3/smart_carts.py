@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Round 3 - Problem D. Smart Carts
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/D
 #
-# Time:  O(N^3)
+# Time:  O(N^3), pass in PyPy2 but Python2
 # Space: O(N)
 #
 
@@ -63,11 +63,11 @@ def query2(N, line_count, target_line_cap):  # Time: O(1)
     return N  # all free cart chains could be packed into the lines
 
 def query(N, parent, line_count, initial_max_count, d, c, x, y, args):  # amortized time: O(1)
-    target_line_cap = [min(c, i) for i in (x, y)]
+    target_line_cap = [min(c, x), min(c, y)]
     for i in xrange(2):
         if line_count[A][i] > c:
             return -1
-    if sum(target_line_cap) < N:
+    if target_line_cap[0] + target_line_cap[1] < N:
         return -1
     if d == 0:
         return query0(line_count, parent, target_line_cap, initial_max_count)

@@ -14,9 +14,9 @@ def query0(line_count, parent, target_line_cap, initial_max_count):  # Time: O(1
     return initial_max_count
 
 def precompute_for_query1(N, parent, pos, seq, line_count, c):  # Time: O(N^2)
-    def is_free(i, non_free_but_accessible):
+    def is_free(i, has_non_free_but_accessible):
         j, p = pos[A][i]
-        return p > line_count[A][j]-free_count[j]-non_free_but_accessible
+        return p > line_count[A][j]-free_count[j]-has_non_free_but_accessible
 
     free_count = [min(c-line_count[A][1-i], line_count[A][i]) for i in xrange(2)]
     possible_max_count = sum(parent[A][i] == parent[B][i] or (is_free(i, 0) and is_free(parent[B][i], 1)) for i in xrange(N))

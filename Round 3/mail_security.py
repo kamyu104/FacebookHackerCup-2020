@@ -154,9 +154,10 @@ def check(S, P, X, val):
             continue
         if not ordered_set:
             return False
-        it = ordered_set.lower_bound((capacity%X, 0))  # minimize the lost of key_count, key_count would be lost floor(capacity/X) if box_capacity%X >= capacity%X, otherwise floor(capacity/X)+1
+        # minimize the lost of key_count, key_count would be lost floor(capacity/X) if box_capacity%X >= capacity%X, otherwise floor(capacity/X)+1
+        it = ordered_set.lower_bound((capacity%X, 0))  # yield the min of box_capacity%X s.t. box_capacity%X >= capacity%X to greedily keep more choices of ordered_set
         if it == ordered_set.end():
-            it = ordered_set.begin()  # yield the smallest box_capacity%X to greedily keep more choices of ordered_set
+            it = ordered_set.begin()  # if not exist, yield the smallest box_capacity%X to greedily keep more choices of ordered_set
         box_capacity = it.val[1]
         ordered_set.remove(it)
         key_count += (box_capacity-capacity)//X - box_capacity//X

@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Round 3 - Problem C. Mail Security
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/C
 #
-# Time:  O((N + M) * (logN + logM)^2)
+# Time:  O((N + M) * (logN + logM)^2), pass in PyPy2 but Python2
 # Space: O(N + M)
 #
 

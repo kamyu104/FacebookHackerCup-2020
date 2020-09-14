@@ -120,56 +120,6 @@ class SkipList(object):
                 curr = curr.nexts[i]
         return "\n".join(map(lambda x: "->".join(x), result))
 
-# Template translated from:
-# https://github.com/kth-competitive-programming/kactl/blob/master/content/data-structures/LineContainer.h
-class LineContainer(object):
-    def __init__(self):
-        self.__skiplist = SkipList()
-
-    def add(self, k, m):
-        self.__skiplist.add([k, m, 0])
-        z = self.__skiplist.find([k, m, 0])
-        x = y = z
-        z = z.nexts[0]
-        while self.__intersect(y, z):
-            z = self.__skiplist.remove(z)
-        if x != self.__skiplist.begin():
-            x = x.prevs[0]
-            if self.__intersect(x, y):
-                y = self.__skiplist.remove(y)
-                self.__intersect(x, y)
-        y = x
-        while y != self.__skiplist.begin():
-            x = x.prevs[0]
-            if x.val[2] < y.val[2]:
-                break
-            y = self.__skiplist.remove(y)
-            self.__intersect(x, y)
-            y = x
-    
-    def query(self, x):
-        it = self.__skiplist.lower_bound(x, cmp=lambda x, y: x[2] < y)
-        return it.val[0]* x + it.val[1]
-
-    def __intersect(self, x, y):
-        if y == self.__skiplist.end():
-            x.val[2] = float("inf")
-            return False
-        if x.val[0] == y.val[0]:
-            x.val[2] = float("inf") if x.val[1] > y.val[1] else float("-inf")
-        else:
-            x.val[2] = (y.val[1]-x.val[1])//(x.val[0]-y.val[0])
-        return x.val[2] >= y.val[2]
-
-    def __iter__(self):
-        return iter(self.__skiplist)
-
-    def __len__(self):
-        return len(self.__skiplist)
-
-    def __str__(self):
-        return str(self.__skiplist)
-
 def binary_search_right(left, right, check):
     while left <= right:
         mid = left + (right-left)//2
@@ -186,13 +136,13 @@ def read(K, N):
         X.append((A*X[-2] + B*X[-1] + C) % D + 1)
     return X
 
-def check(S, P, X, n):
+def check(S, P, X, val):
     objects = []
     for i in reversed(xrange(len(S))):
-        if len(objects) < n or S[i] >= X:
+        if len(objects) < val or S[i] >= X:
             objects.append((S[i], True))
     box_count = len(objects)
-    for i in xrange(n):
+    for i in xrange(val):
         objects.append((P[i], False))
     objects.sort(reverse=True)
     ordered_set = SkipList()

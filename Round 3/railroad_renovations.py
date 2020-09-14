@@ -30,7 +30,7 @@ def railroad_renovations():
                 continue
             min_cost = min(count)  # find min cost to make all 0s before all 1s
             curr_count = [0]*2
-            for _, r in ordered_set:
+            for _, r in ordered_set:  # Time: O(N)
                 curr_count[r] += 1
                 min_cost = min(min_cost, curr_count[1]+(count[0]-curr_count[0]))  # check each 0-1 splitting point
             for k in xrange(min_cost, K+1):

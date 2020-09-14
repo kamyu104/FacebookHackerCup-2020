@@ -4,7 +4,7 @@
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/round-3/problems/C
 #
 # Time:  O((N + M) * (logN + logM)^2)
-# Space: O(N)
+# Space: O(N + M)
 #
 
 from functools import partial
@@ -206,7 +206,7 @@ def check(S, P, X, n):
             return False
         it = ordered_set.lower_bound((capacity%X, 0))  # minimize the lost of key_count
         if it == ordered_set.end():  # greedily keep ordered_set
-            it = ordered_set.begin()
+            it = ordered_set.begin()  # discard the smallest capacity%X
         box_capacity = it.val[1]
         ordered_set.remove(it)
         key_count += (box_capacity-capacity)//X - box_capacity//X

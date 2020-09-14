@@ -102,7 +102,7 @@ def smart_carts():
                 args = precompute_for_query1(N, parent, pos, seq, line_count, c)  # Time: O(N^2)
             for x in xrange(N+1):  # Time: O(N^2) loops and each query costs amortized O(1)
                 for y in xrange(N+1):
-                    # given (c, x, y), for any d >= 2, the result of query v is the same, thus increase count by N-1
+                    # given (c, x, y), for any d >= 2, the result v of query is the same, thus increase count by N-1
                     G[query(N, parent, line_count, initial_max_count, d, c, x, y, args)+1] += N-1 if d == 2 else 1
     return " ".join(map(str, G))
 

@@ -1,6 +1,6 @@
 # Copyright (c) 2020 kamyu. All rights reserved.
 #
-# Facebook Hacker Cup 2020 Final Round - Cryptoconference
+# Facebook Hacker Cup 2020 Final Round - Problem A. Cryptoconference
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/A
 #
 # Time:  O(NlogN)

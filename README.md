@@ -48,9 +48,9 @@ You can relive the magic of the 2020 Hacker Cup World Finals by watching the [Li
 
 | # | Title | Solution | Time | Space | Difficulty | Tag | Note |
 |---| ----- | -------- | ---- | ----- | ---------- | --- | ---- |
-|1| [Cryptoconference](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/A)| [Python](./Final%20Round/cryptoconference.py) | _O(NlogN)_ | _O(N)_ | Easy || Skip List, Counting |
-|2| [Somebody Else's Problem](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/B)|||| Easy |||
-|3| [Pond Precipitation](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/C)|||| Medium |||
-|4| [Spider Spring](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/D)|||| Medium |||
-|5| [Tree Training](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/E)|||| Hard |||
-|6| [Cake-Cutting Committee](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/F)|||| Hard |||
+|A| [Cryptoconference](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/A)| [Python](./Final%20Round/cryptoconference.py) | _O(NlogN)_ | _O(N)_ | Easy || Skip List, Counting |
+|B| [Somebody Else's Problem](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/B)|||| Easy |||
+|C| [Pond Precipitation](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/C)|||| Medium |||
+|D| [Spider Spring](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/D)|||| Medium |||
+|E| [Tree Training](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/E)|||| Hard |||
+|F| [Cake-Cutting Committee](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/F)|||| Hard |||

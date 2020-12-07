@@ -149,7 +149,7 @@ class LineContainer(object):
     
     def query(self, x):
         it = self.__skiplist.lower_bound(x, cmp=lambda x, y: x[2] < y)
-        return it.val[0]* x + it.val[1]
+        return it.val[0]*x + it.val[1]
 
     def __intersect(self, x, y):
         if y == self.__skiplist.end():

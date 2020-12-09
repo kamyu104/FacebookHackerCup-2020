@@ -9,7 +9,7 @@
 
 from functools import partial
 
-def iter_dfs(children):  # Time: O(N)
+def iter_postorder_traversal(children):  # Time: O(N)
     def divide(i):
         stk.append(partial(conquer, i))
         for j in reversed(xrange(len(children[i]))):
@@ -26,7 +26,7 @@ def iter_dfs(children):  # Time: O(N)
         stk.pop()()
     return dp1
 
-def iter_dfs2(children, dp1):  # Time: O(N)
+def iter_preorder_traversal(children, dp1):  # Time: O(N)
     def divide(i, d):
         for j in reversed(xrange(len(children[i]))):
             c = children[i][j]
@@ -60,8 +60,8 @@ def somebody_elses_problem():
     children = [[] for _ in xrange(N)]
     for i, m in enumerate(map(int, raw_input().strip().split()), 1):
         children[m-1].append(i)
-    dp1 = iter_dfs(children)
-    return iter_dfs2(children, dp1)
+    dp1 = iter_postorder_traversal(children)
+    return iter_preorder_traversal(children, dp1)
 
 MOD = 10**9+7
 for case in xrange(input()):

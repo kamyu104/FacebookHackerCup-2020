@@ -166,23 +166,23 @@ def read(N, K):
         X.append((A*X[-2] + B*X[-1] + C) % D + 1)
     return X    
 
-def query_heights(height_intervals, i):
-    return height_intervals.lower_bound((i+1, -1)).prevs[0].val[1]
+def query_heights(heights, i):
+    return heights.lower_bound((i+1, -1)).prevs[0].val[1]
 
-def update_heights(height_intervals, i, j, h):
+def update_heights(heights, i, j, h):
     j += 1
-    jt = height_intervals.lower_bound((j, -1))
+    jt = heights.lower_bound((j, -1))
     if jt.val[0] != j:
-        jt = height_intervals.add((j, jt.prevs[0].val[1] if jt.prevs[0].val else 0))[0]
-    it = height_intervals.lower_bound((i, -1))
+        jt = heights.add((j, jt.prevs[0].val[1] if jt.prevs[0].val else 0))[0]
+    it = heights.lower_bound((i, -1))
     while it != jt:
-        it = height_intervals.remove(it)
-    height_intervals.add((i, h))
+        it = heights.remove(it)
+    heights.add((i, h))
 
-def update_line_segment(height_intervals, line_segments, bits, N, i, d):
+def update_bits(heights, bits, N, i, d):
     if i < 0 or i+1 >= N:
         return
-    a, b = query_heights(height_intervals, i), query_heights(height_intervals, i+1)
+    a, b = query_heights(heights, i), query_heights(heights, i+1)
     if a > b:
         a, b = b, a
     w = (i+1) * (N-i-1)
@@ -190,35 +190,33 @@ def update_line_segment(height_intervals, line_segments, bits, N, i, d):
     bits[1].add(a, a*w*d % MOD)
     bits[2].add(b, w*d % MOD)
     bits[3].add(b, b*w*d % MOD)
-    if d > 0:
-        line_segments.add(i)
-    else:
-        line_segments.remove(line_segments.lower_bound(i))
 
 def spider_spring():
     N, M, K = map(int, raw_input().strip().split())
     H = read(N, K)
     X, Y, Z, W = [read(M, K) for _ in xrange(4)]
     size = max(max(H), max(Z), max(W))
-    height_intervals = SkipList(end=(float("inf"), float("inf")))
+    heights = SkipList(end=(float("inf"), float("inf")))
     bits = [BIT(size) for _ in xrange(4)]
     line_segments = SkipList(end=float("inf"))
     horiz = 0
     for i in xrange(N):
-        update_heights(height_intervals, i, i, H[i])
-        update_line_segment(height_intervals, line_segments, bits, N, i-1, 1)
+        update_heights(heights, i, i, H[i])
+        update_bits(heights, bits, N, i-1, 1)
+        line_segments.add(i-1)
         horiz = (horiz + i*(N-i)) % MOD
     result = 1
     for i in xrange(M):
         x, y, z, w = X[i]-1,  min(X[i]+Y[i]-1, N)-1, Z[i], W[i]
         it = line_segments.lower_bound(x-1)
         while it != line_segments.end() and it.val <= y:
-            k = it.val
-            it = it.nexts[0]
-            update_line_segment(height_intervals, line_segments, bits, N, k, -1)
-        update_heights(height_intervals, x, y, z)
-        update_line_segment(height_intervals, line_segments, bits, N, x-1, 1)
-        update_line_segment(height_intervals, line_segments, bits, N, y, 1)
+            update_bits(heights, bits, N, it.val, -1)
+            it = line_segments.remove(it)
+        update_heights(heights, x, y, z)
+        update_bits(heights, bits, N, x-1, 1)
+        line_segments.add(x-1)
+        update_bits(heights, bits, N, y, 1)
+        line_segments.add(y)
         d1 = (bits[3].query(size)-bits[3].query(w))-(bits[1].query(size)-bits[1].query(w))
         d2 = (bits[2].query(size)-bits[2].query(w))-(bits[0].query(size)-bits[0].query(w))
         vert = (d1 - d2*w) % MOD

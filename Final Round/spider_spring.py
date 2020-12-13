@@ -173,7 +173,7 @@ def update_heights(height_intervals, i, j, h):
     j += 1
     it = height_intervals.lower_bound((i, -1))
     jt = height_intervals.lower_bound((j, -1))
-    jh = jt.prevs[0].val[1]
+    jh = jt.prevs[0].val[1] if jt.prevs[0].val else 0
     while it != jt:
         it = height_intervals.remove(it)
     height_intervals.add((i, h))
@@ -201,9 +201,7 @@ def spider_spring():
     H = read(N, K)
     X, Y, Z, W = [read(M, K) for _ in xrange(4)]
     size = max(max(H), max(Z), max(W))
-    height_intervals = SkipList()
-    height_intervals.add((-1, 0))
-    height_intervals.add((N, -1))
+    height_intervals = SkipList(end=(float("inf"), float("inf")))
     bits = [BIT(size) for _ in xrange(4)]
     line_segments = SkipList(end=float("inf"))
     horiz = 0

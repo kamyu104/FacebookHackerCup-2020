@@ -171,14 +171,13 @@ def query_heights(height_intervals, i):
 
 def update_heights(height_intervals, i, j, h):
     j += 1
-    it = height_intervals.lower_bound((i, -1))
     jt = height_intervals.lower_bound((j, -1))
-    jh = jt.prevs[0].val[1] if jt.prevs[0].val else 0
+    if jt.val[0] != j:
+        jt = height_intervals.add((j, jt.prevs[0].val[1] if jt.prevs[0].val else 0))[0]
+    it = height_intervals.lower_bound((i, -1))
     while it != jt:
         it = height_intervals.remove(it)
     height_intervals.add((i, h))
-    if jt.val[0] != j:
-        height_intervals.add((j, jh))
 
 def update_line_segment(height_intervals, line_segments, bits, N, i, d):
     if i < 0 or i+1 >= N:

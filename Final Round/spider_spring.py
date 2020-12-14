@@ -9,6 +9,91 @@
 
 from random import randint, seed
 
+class SegmentTree(object):
+    def __init__(self, N,
+                 build_fn=lambda x, y: [y]*(2*x),
+                 query_fn=lambda x, y: y if x is None else x+y,
+                 update_fn=lambda x, y: y,  # lambda x, y: y if x is None else x+y
+                 default_val=0):
+        self.N = N
+        self.H = (N-1).bit_length()
+        self.query_fn = query_fn
+        self.update_fn = update_fn
+        self.default_val = default_val
+        self.tree = build_fn(N, default_val)
+        self.lazy = [None]*N
+
+    def __apply(self, x, val):
+        self.tree[x] = self.update_fn(self.tree[x], val)
+        if x < self.N:
+            self.lazy[x] = self.update_fn(self.lazy[x], val)
+
+    def __push_one(self, x):
+        if x < self.N and self.lazy[x] is not None:
+            self.__apply(x*2, self.lazy[x])
+            self.__apply(x*2 + 1, self.lazy[x])
+            self.lazy[x] = None
+
+    def __push(self, x):
+        n = 2**self.H
+        while n != 1:
+            y = x // n
+            self.__push_one(y)
+            n //= 2
+
+    def update(self, L, R, h):  # Time: O(logN), Space: O(N)
+        def pull(x):
+            while x > 1:
+                x //= 2
+                self.__push_one(x*2)
+                self.__push_one(x*2+1)
+                self.tree[x] = self.query_fn(self.tree[x*2], self.tree[x*2+1])
+        
+        L += self.N
+        R += self.N
+        self.__push(L)
+        self.__push(R)
+        L0, R0 = L, R
+        while L <= R:
+            if L & 1:  # is right child
+                self.__apply(L, h)
+                self.__push_one(L)
+                L += 1
+            if R & 1 == 0:  # is left child
+                self.__apply(R, h)
+                self.__push_one(R)
+                R -= 1
+            L //= 2
+            R //= 2
+        pull(L0)
+        pull(R0)
+
+    def query(self, L, R):  # Time: O(logN), Space: O(N)
+        result = self.default_val
+        if L > R:
+            return result
+
+        L += self.N
+        R += self.N
+        self.__push(L)
+        self.__push(R)
+        while L <= R:
+            if L & 1:  # is right child
+                result = self.query_fn(result, self.tree[L])
+                L += 1
+            if R & 1 == 0:  # is left child
+                result = self.query_fn(result, self.tree[R])
+                R -= 1
+            L //= 2
+            R //= 2
+        return result
+    
+    def __str__(self):
+        showList = []
+        for i in xrange(self.N):
+            showList.append(self.query(i, i))
+        return ",".join(map(str, showList))
+    
 # Template modified from:
 # https://github.com/kamyu104/FacebookHackerCup-2020/blob/master/Final%20Round/cryptoconference.py
 class SkipNode(object):
@@ -119,22 +204,6 @@ class SkipList(object):
                 curr = curr.nexts[i]
         return "\n".join(map(lambda x: "->".join(x), result))
 
-class BIT(object):  # 1-indexed.
-    def __init__(self, n):
-        self.__bit = [0]*(n+1)  # Extra one for dummy node.
-
-    def add(self, i, val):
-        while i < len(self.__bit):
-            self.__bit[i] += val
-            i += (i & -i)
-
-    def query(self, i):
-        ret = 0
-        while i > 0:
-            ret += self.__bit[i]
-            i -= (i & -i)
-        return ret
-
 def read(N, K):
     X = map(int, raw_input().strip().split())
     A, B, C, D = map(int, raw_input().strip().split())
@@ -143,42 +212,35 @@ def read(N, K):
     return X    
 
 def query_heights(heights, i):
-    return heights.lower_bound((i+1, -1)).prevs[0].val[1]
+    return heights.query(i, i)
 
 def update_heights(heights, i, j, h):
-    j += 1
-    jt = heights.lower_bound((j, -1))
-    if jt.val[0] != j:
-        jt = heights.add((j, jt.prevs[0].val[1] if jt is not heights.begin() else 0))[0]
-    it = heights.lower_bound((i, -1))
-    while it != jt:
-        it = heights.remove(it)
-    heights.add((i, h))
+    heights.update(i, j, h)
 
-def update_bits(heights, bits, N, i, d):
+def update_segment_trees(heights, segment_trees, N, i, d):
     if i < 0 or i+1 >= N:
         return
     a, b = query_heights(heights, i), query_heights(heights, i+1)
     if a > b:
         a, b = b, a
     w = (i+1) * (N-i-1)
-    bits[0].add(a, w*d % MOD)
-    bits[1].add(a, a*w*d % MOD)
-    bits[2].add(b, w*d % MOD)
-    bits[3].add(b, b*w*d % MOD)
+    segment_trees[0].update(a, a, w*d % MOD)
+    segment_trees[1].update(a, a, a*w*d % MOD)
+    segment_trees[2].update(b, b, w*d % MOD)
+    segment_trees[3].update(b, b, b*w*d % MOD)
 
 def spider_spring():
     N, M, K = map(int, raw_input().strip().split())
     H = read(N, K)
     X, Y, Z, W = [read(M, K) for _ in xrange(4)]
     size = max(max(H), max(Z), max(W))
-    heights = SkipList(end=(float("inf"), float("inf")))
-    bits = [BIT(size) for _ in xrange(4)]
+    heights = SegmentTree(N)
+    segment_trees = [SegmentTree(size+1, update_fn=lambda x, y: y if x is None else x+y) for _ in xrange(4)]
     line_segments = SkipList(end=float("inf"))
     horiz = 0
     for i in xrange(N):
         update_heights(heights, i, i, H[i])
-        update_bits(heights, bits, N, i-1, 1)
+        update_segment_trees(heights, segment_trees, N, i-1, 1)
         line_segments.add(i-1)
         horiz = (horiz + i*(N-i)) % MOD
     result = 1
@@ -186,15 +248,15 @@ def spider_spring():
         x, y, z, w = X[i]-1,  min(X[i]+Y[i]-1, N)-1, Z[i], W[i]
         it = line_segments.lower_bound(x-1)
         while it != line_segments.end() and it.val <= y:
-            update_bits(heights, bits, N, it.val, -1)
+            update_segment_trees(heights, segment_trees, N, it.val, -1)
             it = line_segments.remove(it)
         update_heights(heights, x, y, z)
-        update_bits(heights, bits, N, x-1, 1)
+        update_segment_trees(heights, segment_trees, N, x-1, 1)
         line_segments.add(x-1)
-        update_bits(heights, bits, N, y, 1)
+        update_segment_trees(heights, segment_trees, N, y, 1)
         line_segments.add(y)
-        d1 = (bits[3].query(size)-bits[3].query(w))-(bits[1].query(size)-bits[1].query(w))
-        d2 = (bits[2].query(size)-bits[2].query(w))-(bits[0].query(size)-bits[0].query(w))
+        d1 = segment_trees[3].query(w+1, size)-segment_trees[1].query(w+1, size)
+        d2 = segment_trees[2].query(w+1, size)-segment_trees[0].query(w+1, size)
         vert = (d1 - d2*w) % MOD
         result = result * (horiz+vert) * 2 % MOD
     return result

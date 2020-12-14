@@ -119,30 +119,6 @@ class SkipList(object):
                 curr = curr.nexts[i]
         return "\n".join(map(lambda x: "->".join(x), result))
 
-def count(it):
-    a = it.val[0]+1
-    it = it.nexts[0]
-    b, c = it.val[0], it.val[1]-1
-    v1, v2 = c-b, c-a
-    return (v2+v1)*(v2-v1+1)//2
-
-def insert(ordered_set, a, b):
-    it = ordered_set.lower_bound((a, -1))
-    if a <= it.val[0] <= it.val[1] <= b:
-        return 0
-    if it.val[0] > a:
-        it = it.prevs[0]
-    delta = 0
-    while it.val[1] >= b:
-        jt, it = it, it.prevs[0]
-        delta -= count(jt) + count(it)
-        ordered_set.remove(jt)
-        delta += count(it)
-    delta -= count(it)
-    jt = ordered_set.add((a, b))[0]
-    delta += count(it) + count(jt)
-    return delta
-
 class BIT(object):  # 1-indexed.
     def __init__(self, n):
         self.__bit = [0]*(n+1)  # Extra one for dummy node.
@@ -173,7 +149,7 @@ def update_heights(heights, i, j, h):
     j += 1
     jt = heights.lower_bound((j, -1))
     if jt.val[0] != j:
-        jt = heights.add((j, jt.prevs[0].val[1] if jt.prevs[0].val else 0))[0]
+        jt = heights.add((j, jt.prevs[0].val[1] if jt is not heights.begin() else 0))[0]
     it = heights.lower_bound((i, -1))
     while it != jt:
         it = heights.remove(it)

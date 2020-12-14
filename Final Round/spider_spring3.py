@@ -6,6 +6,8 @@
 # Time:  O((N + M) * logN), pass in PyPy2 but Python2
 # Space: O(N)
 #
+# SkipList + SegmentTree + BITs solution, which is the fastest
+#
 
 from random import randint, seed
 

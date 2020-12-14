@@ -3,7 +3,7 @@
 # Facebook Hacker Cup 2020 Final Round - Problem D. Spider Spring
 # https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/D
 #
-# Time:  O((N + M) * logN), pass in PyPy2 but Python2
+# Time:  O((N + M) * logN), TLE in PyPy2
 # Space: O(N)
 #
 # SkipList + SegmentTrees solution, which is the slowest

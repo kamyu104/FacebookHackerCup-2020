@@ -128,6 +128,8 @@ def get_max_combined_c(S, N, C, P, h):
             # map points to positions on their halves
             x, y = [0]*2, [0]*2
             for j in xrange(2):
+                # if a polygon has 3 endpoints in one section and 1 endpoint in the other,
+                # shift one of them over to one of the key line segment's endpoints without changing which other polygons it overlaps with
                 x[j] = get_pos_after(S, h[0], p[j*2]) if bx[j] else (get_pos_after(S, h[0], h[1]) if j else 0)
                 y[j] = -get_pos_after(S, h[1], p[j*2+1]) if by[j] else (0 if j else -get_pos_after(S, h[1], h[0]))
             assert(x[0] <= x[1] and y[0] <= y[1])

@@ -90,12 +90,12 @@ class SegmentTree(object):  # 0-based index
             showList.append(self.query(i, i))
         return ",".join(map(str, showList))
 
-def is_between(S, a, b, p, ex):
+def is_between(S, a, b, p):
     if b < a:
         b += 4*S
     if p < a:
         p += 4*S
-    return a < p and p < b if ex else a <= p and p <= b
+    return a <= p and p <= b
 
 def get_pos_after(S, a, p):
     if p < a:
@@ -107,8 +107,8 @@ def get_max_combined_c(S, N, C, P, h):
     ys, E = [], []
     for i in xrange(N):
         # full intersection?
-        if (is_between(S, P[i][0], P[i][2], h[0], 0) or is_between(S, P[i][3], P[i][1], h[0], 0)) and \
-           (is_between(S, P[i][0], P[i][2], h[1], 0) or is_between(S, P[i][3], P[i][1], h[1], 0)):
+        if (is_between(S, P[i][0], P[i][2], h[0]) or is_between(S, P[i][3], P[i][1], h[0])) and \
+           (is_between(S, P[i][0], P[i][2], h[1]) or is_between(S, P[i][3], P[i][1], h[1])):
             base += C[i]
             continue
         # look for orientation of line segments such that at least one spans crosses from the 1st to the 2nd half
@@ -119,8 +119,8 @@ def get_max_combined_c(S, N, C, P, h):
             # check which points are on their required halves
             bx, by = [0]*2, [0]*2
             for j in xrange(2):
-                bx[j] = is_between(S, h[0], h[1], p[j*2], 0)
-                by[j] = is_between(S, h[1], h[0], p[j*2+1], 0)
+                bx[j] = is_between(S, h[0], h[1], p[j*2])
+                by[j] = is_between(S, h[1], h[0], p[j*2+1])
             # neither line segment is entirely valid?
             if (not bx[0] or not by[0]) and (not bx[1] or not by[1]):
                 continue
@@ -167,9 +167,9 @@ def cake_cutting_committee():
             else:  # y == 0
                 P[i][j] = 4*S-x
         # normalize lines
-        if is_between(S, P[i][1], P[i][0], P[i][2], 1):
+        if is_between(S, P[i][1], P[i][0], P[i][2]):
             P[i][0], P[i][1] = P[i][1], P[i][0]
-        if is_between(S, P[i][2], P[i][3], P[i][0], 1):
+        if is_between(S, P[i][2], P[i][3], P[i][0]):
             P[i][2], P[i][3] = P[i][3], P[i][2]
     # consider all possible dividing lines
     result = 0

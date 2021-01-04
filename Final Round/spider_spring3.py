@@ -30,40 +30,38 @@ class SegmentTree(object):
         if x < self.N:
             self.lazy[x] = self.update_fn(self.lazy[x], val)
 
-    def __push_one(self, x):
-        if x < self.N and self.lazy[x] is not None:
-            self.__apply(x*2, self.lazy[x])
-            self.__apply(x*2 + 1, self.lazy[x])
-            self.lazy[x] = None
-
     def __push(self, x):
         n = 2**self.H
         while n != 1:
             y = x // n
-            self.__push_one(y)
+            if self.lazy[y] is not None:
+                self.__apply(y*2, self.lazy[y])
+                self.__apply(y*2 + 1, self.lazy[y])
+                self.lazy[y] = None
             n //= 2
 
     def update(self, L, R, h):  # Time: O(logN), Space: O(N)
         def pull(x):
             while x > 1:
                 x //= 2
-                self.__push_one(x*2)
-                self.__push_one(x*2+1)
+                assert(x*2 < len(self.tree))
                 self.tree[x] = self.query_fn(self.tree[x*2], self.tree[x*2+1])
-        
+                if self.lazy[x] is not None:
+                    self.tree[x] = self.update_fn(self.tree[x], self.lazy[x])
+
+        if L > R:
+            return
         L += self.N
         R += self.N
-        self.__push(L)
-        self.__push(R)
+        self.__push(L)  # modified
+        self.__push(R)  # modified
         L0, R0 = L, R
         while L <= R:
             if L & 1:  # is right child
                 self.__apply(L, h)
-                self.__push_one(L)
                 L += 1
             if R & 1 == 0:  # is left child
                 self.__apply(R, h)
-                self.__push_one(R)
                 R -= 1
             L //= 2
             R //= 2

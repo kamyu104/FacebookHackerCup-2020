@@ -137,7 +137,7 @@ def get_max_combined_c(S, N, C, P, h):
             E.append((x[1], y[0], y[1], C[i], 0))
             ys.append(y[0]), ys.append(y[1])
             break
-    # compress Y-coordinates
+    # compress y-coordinates
     lookup = {y:i for i, y in enumerate(sorted(set(ys)))}
     # line sweep
     st = SegmentTree(len(lookup))

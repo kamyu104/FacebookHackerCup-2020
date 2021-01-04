@@ -157,7 +157,7 @@ def cake_cutting_committee():
     for i in xrange(N):
         tmp = map(int, raw_input().strip().split())
         C[i] = tmp[0]
-        for j, (x, y) in enumerate(izip(tmp[1::2], tmp[2::2])):
+        for j, (x, y) in enumerate(izip(tmp[1::2], tmp[2::2])):  # number the positions in clockewise order around the edge of the square
             if not x:
                 P[i][j] = y
             elif y == S:

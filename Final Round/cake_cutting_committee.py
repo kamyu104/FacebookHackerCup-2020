@@ -123,12 +123,12 @@ def get_max_combined_c(S, N, C, P, h):
             # neither line segment is entirely valid?
             if (not bx[0] or not by[0]) and (not bx[1] or not by[1]):
                 continue
-            assert(bx[0] + by[0] + bx[1] + by[1] >= 3)  # other one must be at least half-valid
+            assert(bx[0]+by[0]+bx[1]+by[1] >= 3)  # other one must be at least half-valid
             # map points to positions on their halves
             x, y = [0]*2, [0]*2
             for j in xrange(2):
-                x[j] = get_pos_after(S, h[0], p[j * 2]) if bx[j] else (4*S if j else -4*S)
-                y[j] = -get_pos_after(S, h[1], p[j * 2 + 1]) if by[j] else (4*S if j else -4*S)
+                x[j] = get_pos_after(S, h[0], p[j*2]) if bx[j] else (4*S if j else -4*S)
+                y[j] = -get_pos_after(S, h[1], p[j*2+1]) if by[j] else (4*S if j else -4*S)
             assert(x[0] < x[1] and y[0] < y[1])
             E.append((x[0], y[0], y[1], C[i], 1))
             E.append((x[1], y[0], y[1], C[i], 0))

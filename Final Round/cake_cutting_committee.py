@@ -95,7 +95,7 @@ def is_between(S, a, b, p):
         b += 4*S
     if p < a:
         p += 4*S
-    return a <= p and p <= b
+    return a <= p <= b
 
 def get_pos_after(S, a, p):
     if p < a:

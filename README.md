@@ -1,4 +1,4 @@
-# [FacebookHackerCup-2020](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-CC%203.0-blue.svg)](https://creativecommons.org/licenses/by-nc/3.0/) ![Progress](https://img.shields.io/badge/progress-22%20%2F%2024-ff69b4.svg)
+# [FacebookHackerCup-2020](https://www.facebook.com/hackercup/past_rounds/) ![Language](https://img.shields.io/badge/language-Python-orange.svg) [![License](https://img.shields.io/badge/license-CC%203.0-blue.svg)](https://creativecommons.org/licenses/by-nc/3.0/) ![Progress](https://img.shields.io/badge/progress-23%20%2F%2024-ff69b4.svg)
 
 Python solutions of Facebook Hacker Cup 2020. Solution begins with `*` means it will get TLE in the largest data set (total computation amount > `10^8`, which is not friendly for Python to solve in 5 ~ 15 seconds). A `6-minute` timer is set for uploading the result this year.
 
@@ -51,6 +51,6 @@ You can relive the magic of the 2020 Hacker Cup World Finals by watching the [Li
 |A| [Cryptoconference](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/A)| [Python](./Final%20Round/cryptoconference.py) | _O(NlogN)_ | _O(N)_ | Easy || Skip List, Counting |
 |B| [Somebody Else's Problem](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/B)| [Python](./Final%20Round/somebody_elses_problem.py) | _O(N)_ | _O(H)_ | Easy || Tree Traversal, DP |
 |C| [Pond Precipitation](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/C)| [Python](./Final%20Round/pond_precipitation.py) | _O(N^5)_ | _O(N^2)_ | Medium || DP, Euler's Theorem, Expected Value |
-|D| [Spider Spring](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/D)| [*PyPy](./Final%20Round/spider_spring.py) [PyPy](./Final%20Round/spider_spring2.py) [PyPy](./Final%20Round/spider_spring3.py) |_O((N + M) * logN)_ | _O(N)_ | Medium || Skip List, Segment Tree, BIT, Fenwick Tree, Counting |
-|E| [Tree Training](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/E)|||| Hard |||
+|D| [Spider Spring](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/D)| [*PyPy](./Final%20Round/spider_spring.py) [PyPy](./Final%20Round/spider_spring2.py) [PyPy](./Final%20Round/spider_spring3.py) | _O((N + M) * logN)_ | _O(N)_ | Medium || Skip List, Segment Tree, BIT, Fenwick Tree, Counting |
+|E| [Tree Training](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/E)| [PyPy](./Final%20Round/tree_training.py) | _O(N * (logN)^2)_ | _O(N)_ | Hard || Binary Search, Counting |
 |F| [Cake-Cutting Committee](https://www.facebook.com/codingcompetitions/hacker-cup/2020/final-round/problems/F)|||| Hard |||
